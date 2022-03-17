@@ -1,0 +1,38 @@
+html {
+  font-size: 16px;
+}
+:root {
+  --black: #111517;
+  --white: white;
+  --background: #fafafa;
+}
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+main {
+  color: var(--black);
+  background: var(--background);
+  min-height: 100vh;
+}
+
+
+.is-dark-mode {
+  --black: white;
+  --white: #273542;
+  --background: #1a2833;
+}
+
+.is-light-mode {
+  --black: #111517;
+  --white: white;
+  --background: #fafafa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --black: white;
+    --white: #273542;
+    --background: #1a2833;
+  }
+}
