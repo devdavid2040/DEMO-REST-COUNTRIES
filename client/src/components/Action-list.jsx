@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Search from './search'
+import Search from './Search'
 import { Region as FilterByRegion } from './Region'
-import Wrapper from './wrapper'
+import Wrapper from './Wrapper'
 
 const ActionListStyled = styled.div`
   .grid {

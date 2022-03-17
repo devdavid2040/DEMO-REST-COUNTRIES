@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Wrapper from './wrapper'
+import Wrapper from './Wrapper'
 import { useSelector } from 'react-redux'
-import CountrySelected from './country-selected'
+import CountrySelected from './Country-selected'
 
 const CountryPageStyled = styled.div`
   .back {

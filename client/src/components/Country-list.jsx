@@ -1,8 +1,8 @@
 import React, {useState, useEffect } from 'react'
 import styled from 'styled-components'
-import Country from './country'
+import Country from './Country'
 import { useSelector, useDispatch } from 'react-redux'
-import Wrapper from './wrapper'
+import Wrapper from './Wrapper'
 
 const CountryListStyled = styled.div`
   display: grid;
@@ -62,7 +62,7 @@ function CountryList() {
                 region={region}
                 capital={capital}
                 nativeName={nativeName}
-                cioc={cioc}
+               /*  cioc={cioc} */
                 alpha2Code={alpha2Code}
               />
             )

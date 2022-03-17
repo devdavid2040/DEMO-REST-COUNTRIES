@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import CountryList from './country-list'
+import CountryList from './components/Country-list'
 /* import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducer from './reducer' */
-import ActionList from './action-list'
-import Header from './header'
-import CountryPage from './country-page'
+import ActionList from './components/Action-list'
+import Header from './components/Header'
+import CountryPage from './components/Country-page'
 import {
   BrowserRouter as Router,
   Route,

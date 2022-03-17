@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Wrapper from './wrapper'
+import Wrapper from './Wrapper'
 import { Link } from 'react-router-dom'
 
 const HeaderStyled = styled.div`

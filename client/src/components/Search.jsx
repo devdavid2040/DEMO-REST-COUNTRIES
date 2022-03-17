@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Input from './input'
+import Input from './Input'
 import { useDispatch } from 'react-redux'
 
 const SearchStyled = styled.div`

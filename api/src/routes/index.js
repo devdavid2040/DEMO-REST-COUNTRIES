@@ -29,11 +29,15 @@ const dataAPICountry=async()=>{
 
     
     router.get("/countries", async function (req, res) {
-        
-        const apiCountry=await dataAPICountry();
+    
         try{
-            let existListCountry=await Country.findAll();
-            if(!existListCountry.length) await Country.bulkCreate(apiCountry);
+            let existListCountry=await Country.findAll({limit:10,
+                offset:req.query.page});
+
+            if(!existListCountry.length)
+            {const apiCountry=await dataAPICountry();
+                await Country.bulkCreate(apiCountry);
+            } 
         }
         catch(error){
             console.log(error)
@@ -41,22 +45,66 @@ const dataAPICountry=async()=>{
     
         if(req.query.name){
             try{
-                let char=await Country.findAll({
+                let country=await Country.findAll({
                     where:{
                         name:{
                             [Op.iLike]:'%'+req.query.name+'%'
                         }
                     }
                 })
-                return res.json(char);
+                return res.json(country);
             }
             catch(error){
                 console.log(error)
             }
         } 
+        else if(req.query.activity){
+            try{
+                let listActivity=await Activity.findAll({ include: [{
+                    model: Country,
+                    through: { attributes: [] }
+                  }]  })
+                if (listActivity)
+                {
+                    let result=country.filter(e=> e.name.toUpperCase()===req.query.activity.toUpperCase())
+
+                    return res.json(result[0].countries)
+                } 
+            }
+            catch(error){
+                console.log(error)
+            }
+        } 
+        else if(req.query.order)
+        {
+            try{
+                let countryOrder=await Country.findAll({
+                    limit:10,
+                    offset:req.query.page,
+                    order:[["name",req.query.order]],
+                });
+                return res.json(countryOrder);
+                }catch(error){
+                    console.log(error);
+                }
+        }
+        else if(req.query.population)
+        {
+            try{
+                let countryOrder=await Country.findAll({
+                    limit:10,
+                    offset:req.query.page,
+                    order:[["population",req.query.population]],
+                });
+                return res.json(countryOrder);
+                }catch(error){
+                    console.log(error);
+                }
+        }
         else{
             try {
-                let country=await Country.findAll()   
+                let country=await Country.findAll({limit:10,
+                    offset:req.query.page})   
                 return res.json(country);
             } catch (error) {
                 console.log(error)
@@ -78,7 +126,7 @@ const dataAPICountry=async()=>{
         const country= await Country.findOne({ where: { code: req.params.idCountry.toUpperCase() }, include: [{
           model: Activity,
           through: { attributes: [] }
-        }] });
+        }] })
 
         if(country) 
         return res.json({...country.dataValues, ...dataDetail})
@@ -109,7 +157,6 @@ const dataAPICountry=async()=>{
          console.log(error);
      }
  })
-
 
 
 
